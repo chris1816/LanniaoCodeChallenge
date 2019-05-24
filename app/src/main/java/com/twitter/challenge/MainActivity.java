@@ -1,14 +1,12 @@
 package com.twitter.challenge;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -21,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     TextView windSpeedView;
     TextView cloudinessView;
     ImageView cloudyImage;
+    Button fiveDaysWeatherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         windSpeedView = findViewById(R.id.wind_speed);
         cloudinessView = findViewById(R.id.cloudiness);
         cloudyImage = findViewById(R.id.iv_cloud);
+        fiveDaysWeatherButton = findViewById(R.id.button);
 
 /*        temperatureView.setText(getString(R.string.temperature, 25f,
                 TemperatureConverter.celsiusToFahrenheit(25)));*/

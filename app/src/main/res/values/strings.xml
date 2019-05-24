@@ -5,4 +5,5 @@
     <string name="wind_speed">Wind speed</string>
     <string name="cloudiness">Cloudiness</string>
     <string name="cloudy_or_not">cloudy_or_not</string>
+    <string name="see_five_days_weather">See five days weather</string>
 </resources>
