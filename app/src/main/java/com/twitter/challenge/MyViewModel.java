@@ -52,7 +52,7 @@ class MyViewModel extends ViewModel implements NetworkCallback {
             sum += Math.pow(temp - avg, 2);
         }
 
-        deviation.setValue((float) Math.sqrt(sum / (dayNum)));
+        deviation.setValue((float) Math.sqrt(sum / (dayNum - 1)));
     }
 
     public void fetchFiveDaysWeather() {

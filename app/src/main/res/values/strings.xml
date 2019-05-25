@@ -5,7 +5,7 @@
     <string name="wind_speed">Wind speed</string>
     <string name="cloudiness">Cloudiness</string>
     <string name="cloudy_or_not">cloudy_or_not</string>
-    <string name="see_five_days_weather">See five days weather</string>
+    <string name="see_five_days_temperature">See five days temperature deviation</string>
     <string name="see_deviation">The deviation of temperatures in next five days is : %1$.3f</string>
 
 </resources>

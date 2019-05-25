@@ -54,7 +54,7 @@
     <Button
         android:id="@+id/button"
         android:textAllCaps="false"
-        android:text="@string/see_five_days_weather"
+        android:text="@string/see_five_days_temperature"
         android:layout_margin="20dp"
         android:layout_gravity="center_horizontal
 "
