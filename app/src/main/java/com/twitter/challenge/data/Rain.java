@@ -6,13 +6,13 @@ public class Rain {
 
     @SerializedName("3h")
     private
-    double rainIn3h;
+    float rainIn3h;
 
-    public double getRainIn3h() {
+    public float getRainIn3h() {
         return rainIn3h;
     }
 
-    public void setRainIn3h(double rainIn3h) {
+    public void setRainIn3h(float rainIn3h) {
         this.rainIn3h = rainIn3h;
     }
 }

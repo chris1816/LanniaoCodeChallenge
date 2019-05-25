@@ -6,25 +6,25 @@ public class Coordinate {
 
     @SerializedName("lon")
     private
-    double lon;
+    float lon;
 
     @SerializedName("lat")
     private
-    double lat;
+    float lat;
 
-    public double getLon() {
+    public float getLon() {
         return lon;
     }
 
-    public void setLon(double lon) {
+    public void setLon(float lon) {
         this.lon = lon;
     }
 
-    public double getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 }

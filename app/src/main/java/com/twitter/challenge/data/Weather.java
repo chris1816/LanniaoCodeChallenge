@@ -6,37 +6,37 @@ public class Weather {
 
     @SerializedName("temp")
     private
-    double temp;
+    float temp;
 
     @SerializedName("pressure")
     private
-    double pressure;
+    float pressure;
 
     @SerializedName("humidity")
     private
-    double humidity;
+    float humidity;
 
-    public double getTemp() {
+    public float getTemp() {
         return temp;
     }
 
-    public void setTemp(double temp) {
+    public void setTemp(float temp) {
         this.temp = temp;
     }
 
-    public double getPressure() {
+    public float getPressure() {
         return pressure;
     }
 
-    public void setPressure(double pressure) {
+    public void setPressure(float pressure) {
         this.pressure = pressure;
     }
 
-    public double getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(double humidity) {
+    public void setHumidity(float humidity) {
         this.humidity = humidity;
     }
 }

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.twitter.challenge.data.Forecast;
+import com.twitter.challenge.util.TemperatureConverter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView cloudinessView;
     ImageView cloudyImage;
     Button fiveDaysWeatherButton;
+    TextView deviationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +35,14 @@ public class MainActivity extends AppCompatActivity {
         cloudinessView = findViewById(R.id.cloudiness);
         cloudyImage = findViewById(R.id.iv_cloud);
         fiveDaysWeatherButton = findViewById(R.id.button);
+        deviationView = findViewById(R.id.deviation);
 
-/*        temperatureView.setText(getString(R.string.temperature, 25f,
-                TemperatureConverter.celsiusToFahrenheit(25)));*/
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         myViewModel.getLiveDataForecast().observe(this, new Observer<Forecast>() {
                     @Override
                     public void onChanged(Forecast forecast) {
-                        temperatureView.setText(String.valueOf(forecast.getWeather().getTemp()));
+                        float temp = forecast.getWeather().getTemp();
+                        temperatureView.setText(getString(R.string.temperature, temp,
+                                TemperatureConverter.celsiusToFahrenheit(temp)));
                         windSpeedView.setText(String.valueOf(forecast.getWind().getSpeed()));
 
                         double cloudiness = forecast.getCloud().getCloudiness();
@@ -56,6 +54,32 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        myViewModel.getDeviation().observe(this, new Observer<Float>() {
+            @Override
+            public void onChanged(Float mFloat) {
+                deviationView.setVisibility(View.VISIBLE);
+                deviationView.setText(getString(R.string.see_deviation, mFloat));
+//                deviationView.setText(getString(R.string.see_deviation) + aDouble);
+            }
+        });
+
+        fiveDaysWeatherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myViewModel.fetchFiveDaysWeather();
+            }
+        });
+
+/*        temperatureView.setText(getString(R.string.temperature, 25f,
+                TemperatureConverter.celsiusToFahrenheit(25)));*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         myViewModel.fetchWeather();
+
+
     }
 }

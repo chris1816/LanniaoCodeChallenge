@@ -6,13 +6,13 @@ public class Cloud {
 
     @SerializedName("cloudiness")
     private
-    double cloudiness;
+    float cloudiness;
 
-    public double getCloudiness() {
+    public float getCloudiness() {
         return cloudiness;
     }
 
-    public void setCloudiness(double cloudiness) {
+    public void setCloudiness(float cloudiness) {
         this.cloudiness = cloudiness;
     }
 }
