@@ -12,7 +12,4 @@ public class Cloud {
         return cloudiness;
     }
 
-    public void setCloudiness(float cloudiness) {
-        this.cloudiness = cloudiness;
-    }
 }

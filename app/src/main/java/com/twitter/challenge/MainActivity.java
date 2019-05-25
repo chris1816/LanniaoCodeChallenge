@@ -5,11 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.twitter.challenge.data.Forecast;
 import com.twitter.challenge.util.TemperatureConverter;
 
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         windSpeedView.setText(String.valueOf(forecast.getWind().getSpeed()));
 
                         double cloudiness = forecast.getCloud().getCloudiness();
-                        cloudinessView.setText(String.valueOf(cloudiness));
+                        cloudinessView.setText(getString(R.string.cloudiness_percentage, cloudiness));
                         if (cloudiness > 50) {
                             cloudyImage.setVisibility(View.VISIBLE);
                         }
@@ -59,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(Float mFloat) {
                 deviationView.setVisibility(View.VISIBLE);
                 deviationView.setText(getString(R.string.see_deviation, mFloat));
-//                deviationView.setText(getString(R.string.see_deviation) + aDouble);
             }
         });
 
@@ -70,16 +67,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*        temperatureView.setText(getString(R.string.temperature, 25f,
-                TemperatureConverter.celsiusToFahrenheit(25)));*/
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        myViewModel.fetchWeather();
-
-
+        if (savedInstanceState == null) {
+            myViewModel.fetchWeather();
+        }
     }
 }

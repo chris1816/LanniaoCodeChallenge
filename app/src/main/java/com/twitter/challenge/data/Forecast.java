@@ -5,68 +5,50 @@ import com.google.gson.annotations.SerializedName;
 public class Forecast {
 
     @SerializedName("coord")
+    private
     Coordinate coord;
 
     @SerializedName("weather")
+    private
     Weather weather;
 
     @SerializedName("wind")
+    private
     Wind wind;
 
     @SerializedName("rain")
+    private
     Rain rain;
 
     @SerializedName("clouds")
+    private
     Cloud cloud;
 
     @SerializedName("name")
+    private
     String name;
 
     public Coordinate getCoord() {
         return coord;
     }
 
-    public void setCoord(Coordinate coord) {
-        this.coord = coord;
-    }
-
     public Weather getWeather() {
         return weather;
-    }
-
-    public void setWeather(Weather weather) {
-        this.weather = weather;
     }
 
     public Wind getWind() {
         return wind;
     }
 
-    public void setWind(Wind wind) {
-        this.wind = wind;
-    }
-
     public Rain getRain() {
         return rain;
-    }
-
-    public void setRain(Rain rain) {
-        this.rain = rain;
     }
 
     public Cloud getCloud() {
         return cloud;
     }
 
-    public void setCloud(Cloud cloud) {
-        this.cloud = cloud;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

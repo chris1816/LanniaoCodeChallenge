@@ -11,8 +11,4 @@ public class Rain {
     public float getRainIn3h() {
         return rainIn3h;
     }
-
-    public void setRainIn3h(float rainIn3h) {
-        this.rainIn3h = rainIn3h;
-    }
 }

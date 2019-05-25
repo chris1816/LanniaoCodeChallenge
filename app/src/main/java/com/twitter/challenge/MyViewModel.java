@@ -1,62 +1,58 @@
 package com.twitter.challenge;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.twitter.challenge.data.Forecast;
+import com.twitter.challenge.network.NetworkCallback;
+import com.twitter.challenge.util.DeviationCalculator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class MyViewModel extends ViewModel implements NetworkCallback {
+import javax.inject.Inject;
 
-    private Repository repository;
-    private MutableLiveData<Forecast> liveDataForecast = new MutableLiveData<Forecast>();
+public class MyViewModel extends ViewModel implements NetworkCallback {
+
+    private MutableLiveData<Forecast> liveDataForecast = new MutableLiveData<>();
     private MutableLiveData<Float> deviation = new MutableLiveData<>();
 
+    @Inject
+    Repository repository;
+
     public MyViewModel() {
-        repository = new Repository();
+        MyApplication.getComponentInstance().injectRepository(this);
     }
 
     LiveData<Forecast> getLiveDataForecast() {
         return liveDataForecast;
     }
 
-    public MutableLiveData<Float> getDeviation() { return deviation; }
+    MutableLiveData<Float> getDeviation() { return deviation; }
 
     void fetchWeather() {
         repository.fetchWeather(this);
     }
 
     @Override
-    public void getForeCast(Forecast forecast) {
+    public void getForecast(Forecast forecast) {
         liveDataForecast.setValue(forecast);
     }
 
     @Override
     public void getFiveDaysForecast(ArrayList<Forecast> forecasts) {
         List<Float> tempList = new ArrayList<>();
-        int dayNum = 0;
-        double sum = 0;
-
         for (Forecast forecast :  forecasts) {
             tempList.add(forecast.getWeather().getTemp());
-            dayNum++;
-            sum += forecast.getWeather().getTemp();
-        }
-        double avg = sum / dayNum;
-        sum = 0;
-
-        for (double temp : tempList) {
-            sum += Math.pow(temp - avg, 2);
         }
 
-        deviation.setValue((float) Math.sqrt(sum / (dayNum - 1)));
+        deviation.setValue(DeviationCalculator.calculateDeviation(tempList));
     }
 
-    public void fetchFiveDaysWeather() {
+    void fetchFiveDaysWeather() {
         repository.fetchFiveDaysWeather(this);
-
     }
 }
